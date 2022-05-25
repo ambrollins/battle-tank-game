@@ -22,6 +22,9 @@ public class CameraController : MonoBehaviour
 {
     public Transform playerTank;
     public Vector3 offset;
+    public Camera camera;
+    private float CameraZoomOutSpeed = 0.0001f;
+
 
     public void Start()
     {
@@ -49,7 +52,19 @@ public class CameraController : MonoBehaviour
         offset = transform.position - playerTank.transform.position;
 
     }
+    public IEnumerator ZoomOutCamera()  
+    {
+        Debug.Log("zoom out hoja yaar");
+        float lerp = 0.01f;
+        //camera.transform.SetParent(null);
+        while (camera.orthographicSize < 30)
+        {
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 30, lerp);
+            lerp = lerp + CameraZoomOutSpeed;
+            yield return new WaitForSeconds(0.01f);
+        }
 
+    }
 
 
 }

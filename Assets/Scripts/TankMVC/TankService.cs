@@ -23,12 +23,14 @@ public class TankService : SingletonGeneric<TankService>
     //bullet and tank equalized
     public int TType;
     //public TankType tType;
+ 
+    
 
     private void Start()
     {
-        StartGame();
+        StartGame();       
     }
-
+   
     private void StartGame()
     {
         tankController = CreateNewPlayerTank();

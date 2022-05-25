@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class AchievementSystem : SingletonGeneric<AchievementSystem>
 {
@@ -12,18 +14,29 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
     private int currentBulletFiredAchivementLevel;
     private int currentEnemiesKilledAchievementLevel;
 
+    private int count = 0;
+    public int Killed = 0;
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
+
+
     void Start()
     {
         currentBulletFiredAchivementLevel = 0;
         currentEnemiesKilledAchievementLevel = 0;
         EventHandler.Instance.OnEnemyDeath += EnemyDeathCountCheck;
+        text1 = FindObjectOfType<TextMeshProUGUI>();
     }
 
-   
+
     public void BulletsFiredCountCheck(int bulletCount)
     {
+        count = bulletCount;
+        text1.text = "Fired :- " + count;
+
         for (int i = 0; i < achievementSOList.bulletsFiredAchievementSO.achievements.Length; i++)
         {
+
             if (i != currentBulletFiredAchivementLevel) continue;
             if (achievementSOList.bulletsFiredAchievementSO.achievements[i].requirement == bulletCount)
             {
@@ -37,12 +50,15 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
 
     public void EnemyDeathCountCheck()
     {
+        Killed = TankService.Instance.tankController.TankModel.EnemiesKilled;
+        text1.text = "Killed:- " + Killed;
+
         for (int i = 0; i < achievementSOList.enemiesKilledAchievementSO.achievements.Length; i++)
         {
             if (i != currentEnemiesKilledAchievementLevel) continue;
             if (achievementSOList.enemiesKilledAchievementSO.achievements[i].requirement == TankService.Instance.tankController.TankModel.EnemiesKilled)
             {
-                UnlockAchievement(achievementSOList.enemiesKilledAchievementSO.achievements[i].name, achievementSOList.enemiesKilledAchievementSO.achievements[i].info);
+                StartCoroutine(UnlockAchievement(achievementSOList.enemiesKilledAchievementSO.achievements[i].name, achievementSOList.enemiesKilledAchievementSO.achievements[i].info));
                currentEnemiesKilledAchievementLevel = i + 1;
             }
             break;

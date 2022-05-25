@@ -24,11 +24,15 @@ public class TankView : MonoBehaviour,IDamagable
     public bool fired;
     internal bool tankDead;
 
+    //public AudioSource TankMoveSound;
+
+
     private void Start()
     {
         tankController.SubscribeEvents();   
 
     }
+   
 
     private void FixedUpdate()
     {

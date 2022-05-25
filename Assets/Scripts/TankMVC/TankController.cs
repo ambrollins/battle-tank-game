@@ -16,7 +16,6 @@ public class TankController
     //private Image healthBar;
     //public TankView tankView;
     //private Camera camera;
-    private ShellExplosion ShellExplosion;
    
 
     public TankController(TankModel tankModel, TankView tankPrefab)
@@ -29,6 +28,8 @@ public class TankController
     public TankModel TankModel { get; }
     public TankView TankView { get; }
 
+    public TankService TankService;
+
   
 
     // Sets the reference to left & right Joysticks on the Canvas.
@@ -38,6 +39,7 @@ public class TankController
         RightJoyStick = rightJoyStick;
     }
      
+   
 
     // Sets the reference to the Camera & makes it a child object of PLayer Tank.
     // public void SetCameraReference(Camera cameraRef)
@@ -52,7 +54,7 @@ public class TankController
         if (LeftJoyStick.Vertical != 0)
         {
             Vector3 ZAxisMovement = tankRigidBody.transform.position + (tankRigidBody.transform.forward * LeftJoyStick.Vertical * TankModel.Speed * SpeedMultipier);
-            tankRigidBody.MovePosition(ZAxisMovement);
+            tankRigidBody.MovePosition(ZAxisMovement);            
         }
 
         if (LeftJoyStick.Horizontal != 0)
@@ -61,6 +63,8 @@ public class TankController
             tankRigidBody.MoveRotation(newRotation);
         }
     }
+
+   
     
 
     // This Function Handles the Input recieved from the Right Joystick.
@@ -120,11 +124,13 @@ public class TankController
     
 
    
-    private void TankDestroy()
+    public void TankDestroy()
     {
         TankView.tankDead = true;
         TankView.gameObject.SetActive(false);
-        TankView.Destroy(TankView.gameObject);
+        TankService.Instance.cam.ZoomOutCamera();
+        TankView.Destroy(TankView.gameObject);      
+
     }
 
     public void SubscribeEvents()
