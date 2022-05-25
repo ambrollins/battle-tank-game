@@ -15,3 +15,4 @@ MonoBehaviour:
   bulletType: 3
   speed: 25
   Damage: 15
+  maxLifeTime: 3

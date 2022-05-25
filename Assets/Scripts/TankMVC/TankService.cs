@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class TankService : SingletonGeneric<TankService>
 {
     public PlayerTankViewList playerTankViewList;
-    private TankController tankController;
+    public TankController tankController;
     public TankScriptableObjectList TankList;
     public BulletScriptableObjectList BulletList;
     public Joystick LeftJoyStick;
@@ -23,12 +23,14 @@ public class TankService : SingletonGeneric<TankService>
     //bullet and tank equalized
     public int TType;
     //public TankType tType;
+ 
+    
 
     private void Start()
     {
-        StartGame();
+        StartGame();       
     }
-
+   
     private void StartGame()
     {
         tankController = CreateNewPlayerTank();
@@ -49,19 +51,21 @@ public class TankService : SingletonGeneric<TankService>
         return tankController;
         
     }
+   
 
 
-     //This Function is used to communicate with Bullet Service Script when input to fire a bullet is recieved.
+
+    //This Function is used to communicate with Bullet Service Script when input to fire a bullet is recieved.
     public void Fire()
     {
-        Debug.Log("fire");
+        //Debug.Log("fire");
         //Rigidbody shellInstance = GameObject.Instantiate(TankView.shellPrefab, TankView.BulletSpawner.position, TankView.BulletSpawner.rotation, TankView.BulletSpawner) as Rigidbody;
         BulletService.Instance.FireBullet(tankController.TankView.BulletSpawner.transform, tankController.TankModel.BulletType);
-
+        EventHandler.Instance.InvokeOnBulletFired();
         //shellInstance.velocity = TankModel.CurrentLaunchForce * TankView.BulletSpawner.forward;
         //TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
 
     }
 
-    
+
 }
