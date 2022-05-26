@@ -16,6 +16,7 @@ public class TankController
     //private Image healthBar;
     //public TankView tankView;
     //private Camera camera;
+    //private CameraController cameraController;
    
 
     public TankController(TankModel tankModel, TankView tankPrefab)
@@ -30,7 +31,9 @@ public class TankController
 
     public TankService TankService;
 
-  
+   
+    
+    
 
     // Sets the reference to left & right Joysticks on the Canvas.
     public void SetJoyStickReferences(Joystick leftJoyStick, Joystick rightJoyStick)
@@ -105,7 +108,8 @@ public class TankController
         {
             TankModel.currentHealth = 0;
             SetHealthUI();
-            TankDestroy();
+            TankService.instance.CallZoomOutCamera();
+            TankDestroy();            // CameraController camera_Controller = new CameraController();
             return;
         }
         SetHealthUI();
@@ -127,9 +131,8 @@ public class TankController
     public void TankDestroy()
     {
         TankView.tankDead = true;
-        TankView.gameObject.SetActive(false);
-        TankService.Instance.cam.ZoomOutCamera();
-        TankView.Destroy(TankView.gameObject);      
+        TankView.gameObject.SetActive(false);        
+        GameObject.Destroy(TankView.gameObject);      
 
     }
 
@@ -148,7 +151,7 @@ public class TankController
     public void FiredBullet()
     {
         TankModel.BulletsFired++;
-        Debug.Log("achievemntbF");
+        //Debug.Log("achievemntbF");
         AchievementSystem.Instance.BulletsFiredCountCheck(TankModel.BulletsFired);
     }
 }

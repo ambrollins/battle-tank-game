@@ -7,20 +7,21 @@ using UnityEngine.UI;
 /// </summary>
 public class TankView : MonoBehaviour,IDamagable
 {
-    public GameObject Turret;
+    [Header("Transform")]    
     public Transform BulletSpawner;
     private TankController tankController;
-    private float lerpSpeed;   
+
+    public GameObject Turret;
 
     public Slider sliderHealth;
-    
+    public Slider aimSlider;
     public Image fillImage;
     public Color fullHealthColor = Color.green;
     public Color zeroHealthColor = Color.red;
 
     public Rigidbody shellPrefab;
-    public Slider aimSlider;
 
+    [Header("Bool")]
     public bool fired;
     internal bool tankDead;
 
@@ -59,6 +60,7 @@ public class TankView : MonoBehaviour,IDamagable
         tankController.UnsubscribeEvents();
     }
 
+    
 
 
 

@@ -67,5 +67,10 @@ public class TankService : SingletonGeneric<TankService>
 
     }
 
+    public void CallZoomOutCamera()
+    {
+        StartCoroutine(cam.ZoomOutCamera());//TankService.instance.cam.ZoomOutCamera();
+    }
+
 
 }

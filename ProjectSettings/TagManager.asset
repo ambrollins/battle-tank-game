@@ -8,6 +8,7 @@ TagManager:
   - WayPoint
   - Bullet
   - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

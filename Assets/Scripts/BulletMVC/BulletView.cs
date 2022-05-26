@@ -36,7 +36,7 @@ public class BulletView : MonoBehaviour
         
 
         //BExplode.Play();
-        Debug.Log("destroy bullet");
+        //Debug.Log("destroy bullet");
 
 
     }

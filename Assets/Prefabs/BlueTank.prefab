@@ -770,15 +770,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99db247bae9db945bd707dd28a73792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turret: {fileID: 8912496172641065099}
   BulletSpawner: {fileID: 8487276645714410325}
+  Turret: {fileID: 8912496172641065099}
   sliderHealth: {fileID: 1710304535923328898}
+  aimSlider: {fileID: 1596751237593734961}
   fillImage: {fileID: 5614114630741780007}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   shellPrefab: {fileID: 1739870954524952489, guid: 50aaa3869fa80454aaec0c8c1a476d16,
     type: 3}
-  aimSlider: {fileID: 1596751237593734961}
   fired: 0
 --- !u!1 &8912496172641065093
 GameObject:
@@ -969,7 +969,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8912496172641065099}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

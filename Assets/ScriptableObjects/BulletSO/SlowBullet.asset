@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 1
   speed: 10
-  Damage: 20
+  Damage: 50
   maxLifeTime: 3

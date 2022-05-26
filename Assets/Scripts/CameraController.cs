@@ -15,7 +15,6 @@
 //}
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -26,9 +25,10 @@ public class CameraController : MonoBehaviour
     private float CameraZoomOutSpeed = 0.0001f;
 
 
+
     public void Start()
     {
-        playerTank = FindObjectOfType<TankView>().transform;
+        playerTank = GameObject.FindObjectOfType<TankView>().transform;
     }
 
     void Update()
@@ -54,15 +54,20 @@ public class CameraController : MonoBehaviour
     }
     public IEnumerator ZoomOutCamera()  
     {
-        Debug.Log("zoom out hoja yaar");
+        //Debug.Log("zoom out hoja yaar");
         float lerp = 0.01f;
         //camera.transform.SetParent(null);
-        while (camera.orthographicSize < 30)
+        while (camera.orthographicSize < 30f)
         {
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 30, lerp);
-            lerp = lerp + CameraZoomOutSpeed;
+            
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 30f, lerp);
+            lerp += CameraZoomOutSpeed;
             yield return new WaitForSeconds(0.01f);
+            //WaitForSeconds waitForSeconds = new WaitForSeconds(5f);
+            Debug.Log("zoom out hoja yaar");
+            //Debug.Log("zoom out hoja yaar");
         }
+        
 
     }
 
