@@ -30,6 +30,7 @@ public class TankController
     public TankView TankView { get; }
 
     public TankService TankService;
+    public GameManager gameManager;
 
    
     
@@ -132,10 +133,11 @@ public class TankController
     {
         TankView.tankDead = true;
         TankView.gameObject.SetActive(false);        
-        GameObject.Destroy(TankView.gameObject);      
-
+        GameObject.Destroy(TankView.gameObject);     
+        gameManager.EnableGameOverPanel();
     }
 
+    
     public void SubscribeEvents()
     {
         EventHandler.Instance.OnBulletFired += FiredBullet;

@@ -64,10 +64,18 @@ public class CameraController : MonoBehaviour
             lerp += CameraZoomOutSpeed;
             yield return new WaitForSeconds(0.01f);
             //WaitForSeconds waitForSeconds = new WaitForSeconds(5f);
-            Debug.Log("zoom out hoja yaar");
             //Debug.Log("zoom out hoja yaar");
+        }       
+
+    }
+    public IEnumerator DestroyEnvironment()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("DestroyWD");
+        for (int i = 0; i < objects.Length; i++)
+        {
+            GameObject.Destroy(objects[i]);
+            yield return new WaitForSeconds(0.05f);
         }
-        
 
     }
 

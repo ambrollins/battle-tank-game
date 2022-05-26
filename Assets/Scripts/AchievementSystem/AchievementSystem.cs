@@ -75,7 +75,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
 
 
     private void OnDisable()
-  {
+    {
         EventHandler.Instance.OnEnemyDeath -= EnemyDeathCountCheck;
     }
 
