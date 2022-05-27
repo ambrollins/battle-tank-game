@@ -24,20 +24,13 @@ public class BulletView : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-
         bulletController.InflictDamage(collision.gameObject);
-
         BExplode.transform.parent = null;
-
         BExplode.Play();
         BEAudio.Play(); 
         Destroy(BExplode.gameObject, BExplode.main.duration);
         Destroy(gameObject);
-        
-
         //BExplode.Play();
         //Debug.Log("destroy bullet");
-
-
     }
 }

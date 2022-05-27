@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
@@ -20,35 +18,28 @@ public class TankView : MonoBehaviour,IDamagable
     public Color zeroHealthColor = Color.red;
 
     public Rigidbody shellPrefab;
+    public ParticleSystem TankExlposionParticle;
 
     [Header("Bool")]
     public bool fired;
     internal bool tankDead;
-
-    //public AudioSource TankMoveSound;
-
 
     private void Start()
     {
         tankController.SubscribeEvents();   
 
     }
-   
-
     private void FixedUpdate()
     {
         tankController.HandleLeftJoyStickInput(GetComponent<Rigidbody>());
         tankController.HandleRightJoyStickInput(Turret.transform);
        
     }
-
-    
     // Sets a reference to the corresponding TankController Script.
     public void SetTankControllerReference(TankController controller)
     {
         tankController = controller;
     }
-
     void IDamagable.TakeDamage(float damage)
     {
        // Debug.Log("Player Taking Damage" + damage);
@@ -59,9 +50,4 @@ public class TankView : MonoBehaviour,IDamagable
     {
         tankController.UnsubscribeEvents();
     }
-
-    
-
-
-
 }

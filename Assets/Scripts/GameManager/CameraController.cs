@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     public Vector3 offset;
     public Camera camera;
     private float CameraZoomOutSpeed = 0.0001f;
-
+   
 
 
     public void Start()

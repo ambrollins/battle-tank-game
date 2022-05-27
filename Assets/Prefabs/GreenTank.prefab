@@ -770,15 +770,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99db247bae9db945bd707dd28a73792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turret: {fileID: 8912496172641065099}
   BulletSpawner: {fileID: 8487276645714410325}
+  Turret: {fileID: 8912496172641065099}
   sliderHealth: {fileID: 1710304535923328898}
+  aimSlider: {fileID: 1596751237593734961}
   fillImage: {fileID: 5614114630741780007}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   shellPrefab: {fileID: 1739870954524952489, guid: e8769756fd76c994b8f9d13d703ead6a,
     type: 3}
-  aimSlider: {fileID: 1596751237593734961}
+  TankExlposionParticle: {fileID: 19874418, guid: ee49a9a8678ecf8468eb488e1ac8d42b,
+    type: 3}
   fired: 0
 --- !u!1 &8912496172641065093
 GameObject:

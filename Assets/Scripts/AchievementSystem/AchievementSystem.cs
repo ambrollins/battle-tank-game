@@ -32,7 +32,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
     public void BulletsFiredCountCheck(int bulletCount)
     {
         count = bulletCount;
-        text1.text = "Fired :- " + count;
+        text1.text = "             :" + count;
 
         for (int i = 0; i < achievementSOList.bulletsFiredAchievementSO.achievements.Length; i++)
         {

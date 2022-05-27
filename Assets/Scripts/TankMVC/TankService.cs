@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,28 +13,22 @@ public class TankService : SingletonGeneric<TankService>
     public Joystick LeftJoyStick;
     public Joystick RightJoyStick;
     public Button FireButton;
-    public CameraController cam;
-    //public EnemyTank enemyTank;
-    //public ETankView enemyTank;
-    //public BulletService bulletService;
-
-    //bullet and tank equalized
+    public CameraController cam;    
     public int TType;
-    //public TankType tType;
- 
-    
+    public AudioSource BGAudio;
+    public AudioSource GameOverSound;
 
     private void Start()
     {
-        StartGame();       
+        StartGame();
+        BGAudio.Play();
     }
    
     private void StartGame()
     {
         tankController = CreateNewPlayerTank();
 
-    }
-     
+    }     
    
     // This Function Creates a new Player Tank MVC & also set all the required references and returns the Tank Controller of the same.
     private TankController CreateNewPlayerTank()
@@ -44,31 +36,21 @@ public class TankService : SingletonGeneric<TankService>
         TankModel tankModel = new TankModel(TankList.TankSOList[2]);
         TankController tankController = new TankController(tankModel, playerTankViewList.TankViewList[(int)TType]);
         tankController.SetJoyStickReferences(LeftJoyStick, RightJoyStick);
-        //tankController.SetCameraReference(playerCamera);
         cam.playerTank = tankController.GetTransform();
         tankController.TankView.SetTankControllerReference(tankController);
-        ///enemyTank.Player = tankController.GetTransform();
-        return tankController;
-        
+        return tankController;        
     }
-   
-
-
 
     //This Function is used to communicate with Bullet Service Script when input to fire a bullet is recieved.
     public void Fire()
     {
-        //Debug.Log("fire");
-        //Rigidbody shellInstance = GameObject.Instantiate(TankView.shellPrefab, TankView.BulletSpawner.position, TankView.BulletSpawner.rotation, TankView.BulletSpawner) as Rigidbody;
         BulletService.Instance.FireBullet(tankController.TankView.BulletSpawner.transform, tankController.TankModel.BulletType);
-        EventHandler.Instance.InvokeOnBulletFired();
-        //shellInstance.velocity = TankModel.CurrentLaunchForce * TankView.BulletSpawner.forward;
-        //TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
-
+        EventHandler.Instance.InvokeOnBulletFired();       
     }
 
     public void CallZoomOutCamera()
     {
+        GameOverSound.Play();
         StartCoroutine(cam.ZoomOutCamera());//TankService.instance.cam.ZoomOutCamera();
         StartCoroutine(cam.DestroyEnvironment());
     }

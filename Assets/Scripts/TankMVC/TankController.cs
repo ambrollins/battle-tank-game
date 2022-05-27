@@ -13,12 +13,6 @@ public class TankController
     private Joystick RightJoyStick;
     private float SpeedMultipier = 0.001f;
     private float RotationSpeedMultiplier = 0.01f;
-    //private Image healthBar;
-    //public TankView tankView;
-    //private Camera camera;
-    //private CameraController cameraController;
-   
-
     public TankController(TankModel tankModel, TankView tankPrefab)
     {
         TankModel = tankModel;
@@ -30,29 +24,14 @@ public class TankController
     public TankView TankView { get; }
 
     public TankService TankService;
-    public GameManager gameManager;
-
-   
-    
-    
-
+    public CameraController CameraController { get; }  
     // Sets the reference to left & right Joysticks on the Canvas.
     public void SetJoyStickReferences(Joystick leftJoyStick, Joystick rightJoyStick)
     {
         LeftJoyStick = leftJoyStick;
         RightJoyStick = rightJoyStick;
     }
-     
-   
-
-    // Sets the reference to the Camera & makes it a child object of PLayer Tank.
-    // public void SetCameraReference(Camera cameraRef)
-    //{
-    // camera = cameraRef;
-    //camera.transform.SetParent(TankView.transform);
-    //}
-
-    // This Function Handles the Input from the Left Joystick.
+    
     public void HandleLeftJoyStickInput(Rigidbody tankRigidBody)
     {
         if (LeftJoyStick.Vertical != 0)
@@ -83,23 +62,6 @@ public class TankController
         SetHealthUI();
     }
 
-
-    //public void TakeDamage(float amount)
-    //{
-    //    TankModel.currentHealth -= amount;
-
-    //    if (TankModel.currentHealth <= 0f && TankView.tankDead)
-    //    {
-    //        TankModel.currentHealth = 0;
-    //        SetHealthUI();
-    //        TankDestroy();
-    //        return;
-    //    }
-    //    Debug.Log("Player Took Damage " + TankModel.currentHealth);
-    //    SetHealthUI();
-    //}
-
-
     public void ApplyDamage(float amount)
     {
         TankModel.currentHealth -= amount;
@@ -111,12 +73,12 @@ public class TankController
             SetHealthUI();
             TankService.instance.CallZoomOutCamera();
             TankDestroy();            // CameraController camera_Controller = new CameraController();
+            TankService.instance.BGAudio.Stop();
             return;
         }
         SetHealthUI();
     }
     
-
     public Transform GetTransform()
     {
         return TankView.transform;
@@ -132,9 +94,10 @@ public class TankController
     public void TankDestroy()
     {
         TankView.tankDead = true;
-        TankView.gameObject.SetActive(false);        
+        TankView.gameObject.SetActive(false);  
+        TankView.TankExlposionParticle.Play();  
         GameObject.Destroy(TankView.gameObject);     
-        gameManager.EnableGameOverPanel();
+        GameManager.Instance.EnableGameOverPanel();
     }
 
     
