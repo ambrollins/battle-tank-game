@@ -109,7 +109,6 @@ public class TankController
     public void UnsubscribeEvents()
     {
         EventHandler.Instance.OnBulletFired -= FiredBullet;
-;
     }
     
 

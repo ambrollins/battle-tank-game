@@ -16,6 +16,6 @@ public class EventHandler : SingletonGeneric<EventHandler>
     public void InvokeOnEnemyDeath()
     {
         OnEnemyDeath?.Invoke();
-    }
+     }   
 
 }
