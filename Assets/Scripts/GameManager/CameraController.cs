@@ -1,19 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class CameraController : MonoBehaviour
-//{
-//    public Transform playerTank;
-//    //private TankType tankType;
-   
-
-//    private void LateUpdate()
-//    {
-//        transform.position = playerTank.position;
-//    }
-//}
-
 using System.Collections;
 using UnityEngine;
 
@@ -48,9 +32,9 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-
+        
         offset = transform.position - playerTank.transform.position;
-
+        
     }
     public IEnumerator ZoomOutCamera()  
     {
@@ -76,8 +60,5 @@ public class CameraController : MonoBehaviour
             GameObject.Destroy(objects[i]);
             yield return new WaitForSeconds(0.05f);
         }
-
     }
-
-
 }
